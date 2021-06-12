@@ -186,4 +186,27 @@ class LineFromBlockView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineFromBlockView) {
+
+        private val animator : Animator = Animator(view)
+        private val lfb : LineFromBlock = LineFromBlock(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lfb.draw(canvas, paint)
+            animator.animate {
+                lfb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lfb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
