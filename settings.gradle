@@ -1,0 +1,3 @@
+include ':linefromblockview'
+include ':app'
+rootProject.name = "LinkedLineFromBlockRotView"
