@@ -19,7 +19,7 @@ val colors : Array<Int> = arrayOf(
     Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 4
-val scGap : Float = 0.02f / parts
+val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 3.9f
 val delay : Long = 20
@@ -36,13 +36,14 @@ fun Canvas.drawLineFromBlock(scale : Float, w : Float, h : Float, paint : Paint)
     val sc1 : Float = scale.divideScale(0, parts)
     val sc2 : Float = scale.divideScale(1, parts)
     val sc3 : Float = scale.divideScale(2, parts)
+    val sc4 : Float = scale.divideScale(3, parts)
     save()
     translate(w / 2, h / 2)
-    rotate(rot * sc2)
+    rotate(rot * sc3)
     save()
-    translate(0f, -h / 2 + (h / 2) * sc1 + (w / 2 + size) * sc3)
+    translate(0f, -h / 2 + (h / 2) * sc2 + (w / 2 + size) * sc4)
     drawRect(RectF(-size, -size, 0f, 0f), paint)
-    drawLine(0f, 0f, 0f, size * sc1, paint)
+    drawLine(-paint.strokeWidth / 2, 0f, -paint.strokeWidth / 2, size * sc1, paint)
     restore()
     restore()
 }
