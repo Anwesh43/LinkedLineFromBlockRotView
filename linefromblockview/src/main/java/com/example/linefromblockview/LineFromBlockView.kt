@@ -211,4 +211,13 @@ class LineFromBlockView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineFromBlockView {
+            val view : LineFromBlockView = LineFromBlockView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
